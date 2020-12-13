@@ -20,15 +20,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: calc(100vh - 2rem);
-  width: calc(100vw - 2rem);
-  padding: 1rem;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
 }
 
 #nav {
-  padding: 30px;
+  padding: 1.25rem 2rem;
 
   a {
     font-weight: bold;

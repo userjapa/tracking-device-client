@@ -9,15 +9,29 @@
 
     <br/>
 
-    <p>Server repository: <a href="https://github.com/userjapa/tracking-device-server">https://github.com/userjapa/tracking-device-server</a></p>
-    <p>Client repository: <a href="https://github.com/userjapa/tracking-device-client">https://github.com/userjapa/tracking-device-client</a></p>
+    <p>Server repository: <a href="https://github.com/userjapa/tracking-device-server" target="_blank">https://github.com/userjapa/tracking-device-server</a></p>
+    <p>Client repository: <a href="https://github.com/userjapa/tracking-device-client" target="_blank">https://github.com/userjapa/tracking-device-client</a></p>
   </div>
 </template>
 
 <style scoped lang="scss">
 .about {
+  padding: 0 1rem 1rem 1rem;
+
   h1, p {
     word-break: break-word;
+  }
+
+  h1 {
+    margin: 0 0 1rem 0;
+  }
+
+  a {
+    color: #42b983;
+  }
+
+  p {
+    margin: .5rem 0;
   }
 }
 </style>

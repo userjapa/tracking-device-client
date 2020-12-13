@@ -4,29 +4,60 @@
 </template>
 
 <script lang="ts">
-import 'leaflet/dist/leaflet.css'
-import L from 'leaflet'
+import { Options, Vue } from 'vue-class-component'
 
-import { Options, Vue } from 'vue-class-component';
+import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
+
+const DefaultIcon = L.icon({
+  iconUrl: '/img/marker-icon.png',
+  iconSize: [25, 41],
+  iconAnchor: [-10, 31],
+  popupAnchor: [22.5, -31],
+  shadowUrl: '/img/marker-shadow.png',
+  shadowSize: [41, 41],
+  shadowAnchor: [-10, 31]
+})
+
+L.Marker.prototype.options.icon = DefaultIcon
 
 @Options({
-  methods: {
-    showLeaflet() {
-      this.map = L.map('map').setView([51.505, -0.09], 20)
+  watch: {
+    coordinate (coords: L.LatLng): void {
+      if (this.marker)
+        this.map.removeLayer(this.marker)
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(this.map)
+      this.marker = L.marker(coords).addTo(this.map)
+
+      this.marker.bindPopup('teste')
+
+      this.map.panTo(coords, {
+        animate: true
+      })
     }
-  },
-  mounted() {
-    this.showLeaflet()
   }
 })
 
 export default class Map extends Vue {
-  map: L.Map;
-  showLeaflet(): void; 
+  map: L.Map | null = null
+  marker: L.Marker | null = null
+  coordinate: L.LatLng | null = null
+
+  setCoordinate(coordinate: L.LatLng): void {
+    this.coordinate = coordinate
+  }
+
+  showLeaflet (): void {
+    this.map = L.map('map').setView([-23.647197801142262, -52.60874578960303], 20)
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(this.map)
+  }
+
+  mounted (): void {
+    this.showLeaflet()
+  }
 }
 </script>
 
