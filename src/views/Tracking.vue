@@ -31,9 +31,10 @@ export default class Tracking extends Vue {
   }
 
   created (): void {
-    this.socket = io('http://localhost:8080', {
+    this.socket = io('http://207.154.195.122:3000', {
       path: '/socket',
       transports: ['websocket'],
+      secure: false,
       rejectUnauthorized: false
     })
 
